@@ -1,0 +1,1534 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Appreciation Week</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Fredoka:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #001f3f 0%, #003d7a 100%);
+      font-family: 'Fredoka', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      scroll-behavior: smooth;
+      color: white;
+    }
+    
+    .main-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    
+    .header-section {
+      text-align: center;
+      padding: 40px 20px 20px;
+    }
+    
+    .appreciation-title {
+      font-family: 'Pacifico', cursive;
+      font-size: 56px;
+      color: white;
+      margin: 0;
+      font-weight: 400;
+      letter-spacing: 1px;
+      line-height: 1.2;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .hub-title-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+      color: #001f3f;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      margin: 30px 0 20px 0;
+      box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
+    }
+    
+    .welcome-section {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      padding: 0 20px;
+      text-align: center;
+    }
+    
+    .welcome-text {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 16px;
+      line-height: 1.8;
+      margin: 12px 0;
+    }
+    
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+    }
+    
+    .activity-card {
+      background: linear-gradient(135deg, #001f3f 0%, #003d7a 100%);
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+      transition: all 0.3s ease;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .activity-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(212, 175, 55, 0.3);
+      border-color: #e5c158;
+    }
+    
+    .activity-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    
+    .activity-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+      margin: 12px 0;
+    }
+    
+    .activity-description {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.85);
+      margin: 12px 0 18px;
+      line-height: 1.5;
+    }
+    
+    .activity-button {
+      background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+      color: #001f3f;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      align-self: center;
+      margin-top: auto;
+    }
+    
+    .activity-button:hover {
+      background: linear-gradient(135deg, #e5c158 0%, #d4af37 100%);
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+    }
+    
+    .activity-button:focus {
+      outline: 2px solid #d4af37;
+      outline-offset: 2px;
+    }
+    
+    .page {
+      display: none;
+    }
+    
+    .page.active {
+      display: block;
+    }
+    
+    .page-header {
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+      margin-bottom: 30px;
+    }
+    
+    .page-title {
+      font-family: 'Pacifico', cursive;
+      font-size: 48px;
+      color: white;
+      margin: 0 0 10px 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .back-button {
+      display: inline-block;
+      margin-bottom: 20px;
+      background: rgba(212, 175, 55, 0.2);
+      color: #d4af37;
+      border: 2px solid #d4af37;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+    }
+    
+    .back-button:hover {
+      background: rgba(212, 175, 55, 0.3);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    }
+    
+    .page-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+    }
+    
+    .form-container {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 12px;
+      padding: 32px;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+    
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    
+    .result-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.3s ease;
+    }
+    
+    .result-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(212, 175, 55, 0.4);
+      transform: translateY(-4px);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #d4af37;
+      margin-bottom: 8px;
+    }
+    
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 2px solid rgba(212, 175, 55, 0.3);
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      outline: none;
+      border-color: #d4af37;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    }
+    
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .radio-option input[type="radio"] {
+      cursor: pointer;
+      accent-color: #d4af37;
+      width: 18px;
+      height: 18px;
+    }
+    
+    .radio-option label {
+      cursor: pointer;
+      flex: 1;
+      color: white;
+    }
+    
+    .form-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      justify-content: flex-end;
+    }
+    
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+      color: #001f3f;
+    }
+    
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #e5c158 0%, #d4af37 100%);
+      transform: scale(1.05);
+    }
+    
+    .btn-secondary {
+      background: rgba(212, 175, 55, 0.2);
+      color: #d4af37;
+      border: 2px solid #d4af37;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(212, 175, 55, 0.3);
+    }
+    
+    .success-message {
+      background: rgba(76, 175, 80, 0.2);
+      color: #a8e6a1;
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(76, 175, 80, 0.4);
+      display: none;
+    }
+    
+    .success-message.show {
+      display: block;
+    }
+    
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .no-results-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+    }
+    
+    .bulletin-board-container {
+      display: flex;
+      gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .bulletin-left {
+      flex: 1;
+      min-height: 600px;
+      background: linear-gradient(135deg, #8B7355 0%, #A0826D 100%);
+      border-radius: 12px;
+      padding: 30px;
+      position: relative;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+      border: 3px solid #6B5344;
+    }
+    
+    .bulletin-left::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #2c2c2c;
+      border-radius: 50%;
+      box-shadow: 25px 0 0 -4px #2c2c2c, 50px 0 0 -4px #2c2c2c, 75px 0 0 -4px #2c2c2c;
+    }
+    
+    .bulletin-left::after {
+      content: '';
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 12px;
+      height: 12px;
+      background: #2c2c2c;
+      border-radius: 50%;
+      box-shadow: -25px 0 0 -4px #2c2c2c, -50px 0 0 -4px #2c2c2c, -75px 0 0 -4px #2c2c2c;
+    }
+    
+    .postit-notes {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .postit-note {
+      background: linear-gradient(135deg, #FFE66D 0%, #FFF176 100%);
+      padding: 20px;
+      border-radius: 2px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transform: rotate(-2deg);
+      transition: all 0.3s ease;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    
+    .postit-note:nth-child(2n) {
+      background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 100%);
+      transform: rotate(2deg);
+    }
+    
+    .postit-note:nth-child(3n) {
+      background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
+      transform: rotate(-1deg);
+    }
+    
+    .postit-note:hover {
+      transform: scale(1.05) rotate(0deg);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+    
+    .postit-note::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 8px;
+      background: rgba(0,0,0,0.1);
+      border-radius: 50%;
+    }
+    
+    .postit-name {
+      font-weight: 700;
+      color: #333;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    .postit-text {
+      color: #444;
+      font-size: 13px;
+      line-height: 1.5;
+      flex: 1;
+      font-family: 'Comic Sans MS', cursive;
+      word-wrap: break-word;
+    }
+    
+    .bulletin-right {
+      flex: 0 0 400px;
+    }
+    
+    @media (max-width: 1024px) {
+      .bulletin-board-container {
+        flex-direction: column;
+      }
+      
+      .bulletin-right {
+        flex: 1;
+      }
+    }
+    
+    .typing-race-container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    
+    .race-track {
+      background: linear-gradient(to bottom, #87CEEB 0%, #E0FFFF 100%);
+      border: 3px solid #333;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 1000px;
+      min-height: 400px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .race-lanes {
+      position: relative;
+      height: 300px;
+    }
+    
+    .lane {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      margin-bottom: 10px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 6px;
+      padding: 0 10px;
+      position: relative;
+    }
+    
+    .racer-name {
+      width: 80px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #333;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .race-progress {
+      flex: 1;
+      height: 30px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 15px;
+      margin: 0 10px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .race-car {
+      font-size: 24px;
+      position: absolute;
+      top: 3px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .wpm {
+      width: 60px;
+      text-align: right;
+      font-weight: 600;
+      color: #333;
+      font-size: 13px;
+    }
+    
+    .typing-input-container {
+      background: rgba(0,0,0,0.05);
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 30px;
+    }
+    
+    .typing-test-input {
+      width: 100%;
+      max-width: 600px;
+      padding: 12px;
+      border: 2px solid #d4af37;
+      border-radius: 6px;
+      font-size: 16px;
+      background: rgba(255,255,255,0.9);
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    .typing-test-input:focus {
+      outline: none;
+      border-color: #e5c158;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    }
+    
+    .emoji-picker-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(212, 175, 55, 0.3);
+      border-radius: 8px;
+      font-size: 28px;
+      padding: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .emoji-picker-btn:hover {
+      background: rgba(212, 175, 55, 0.2);
+      transform: scale(1.1);
+    }
+    
+    .emoji-picker-btn.selected {
+      background: rgba(212, 175, 55, 0.4);
+      border-color: #d4af37;
+      transform: scale(1.15);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    }
+    
+    .bingo-card {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    
+    .bingo-cell {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(212, 175, 55, 0.3);
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .bingo-cell:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #d4af37;
+      transform: scale(1.05);
+    }
+    
+    .bingo-cell.selected {
+      background: rgba(212, 175, 55, 0.3);
+      border-color: #d4af37;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+    }
+    
+    .bingo-cell-skill {
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    
+    .bingo-cell-avatar {
+      font-size: 32px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .bingo-cell.selected .bingo-cell-avatar {
+      opacity: 1;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+ </head>
+ <body class="h-full overflow-auto">
+  <div class="main-wrapper"><!-- HOME PAGE -->
+   <div id="home-page" class="page active">
+    <header class="header-section">
+     <h1 class="appreciation-title">Employee Appreciation Week</h1>
+     <div class="hub-title-badge">
+      🎉 Celebrating Our Amazing Team! 🎉
+     </div>
+     <div class="welcome-section">
+      <p class="welcome-text">Welcome to the Operations Division Employee Appreciation WEEK - because a day just isn't enough!</p>
+      <p class="welcome-text">This hub is your one-stop shop for a handful of quick games and activities designed to help us share a little about ourselves, learn something new about our teammates, and have a little fun together!</p>
+      <p class="welcome-text">Thanks for everything you do!</p>
+     </div>
+    </header>
+    <main class="activities-grid">
+     <div class="activity-card">
+      <div>
+       <div class="activity-icon">
+        👋
+       </div>
+       <h2 class="activity-title">Introductions</h2>
+       <p class="activity-description">Share a bit about yourself and get to know the team!</p>
+      </div><button class="activity-button" onclick="goToPage('introductions-page')">Let's Go</button>
+     </div>
+     <div class="activity-card">
+      <div>
+       <div class="activity-icon">
+        ⭐
+       </div>
+       <h2 class="activity-title">Recognition Wall</h2>
+       <p class="activity-description">Give kudos and celebrate your teammates!</p>
+      </div><button class="activity-button" onclick="goToPage('recognition-page')">Let's Go</button>
+     </div>
+     <div class="activity-card">
+      <div>
+       <div class="activity-icon">
+        🎨
+       </div>
+       <h2 class="activity-title">Show &amp; Tell</h2>
+       <p class="activity-description">Share something interesting about yourself!</p>
+      </div><button class="activity-button" onclick="goToPage('showtell-page')">Let's Go</button>
+     </div>
+     <div class="activity-card">
+      <div>
+       <div class="activity-icon">
+        🧩
+       </div>
+       <h2 class="activity-title">Getting to Know You</h2>
+       <p class="activity-description">Take a fun personality quiz!</p>
+      </div><button class="activity-button" onclick="goToPage('quiz-page')">Let's Go</button>
+     </div>
+     <div class="activity-card">
+      <div>
+       <div class="activity-icon">
+        🎵
+       </div>
+       <h2 class="activity-title">Shared Playlist</h2>
+       <p class="activity-description">Add your favorite song to our team playlist!</p>
+      </div><button class="activity-button" onclick="goToPage('playlist-page')">Let's Go</button>
+     </div>
+     <div class="activity-card">
+      <div>
+       <div class="activity-icon">
+        🎯
+       </div>
+       <h2 class="activity-title">Skillset Bingo</h2>
+       <p class="activity-description">Find teammates with hidden talents and skills!</p>
+      </div><button class="activity-button" onclick="goToPage('bingo-page')">Let's Go</button>
+     </div>
+     <div class="activity-card">
+      <div>
+       <div class="activity-icon">
+        🏎️
+       </div>
+       <h2 class="activity-title">Typing Race</h2>
+       <p class="activity-description">Challenge your typing speed and race teammates!</p>
+      </div><button class="activity-button" onclick="goToPage('typing-page')">Let's Go</button>
+     </div>
+    </main>
+   </div><!-- INTRODUCTIONS PAGE -->
+   <div id="introductions-page" class="page">
+    <div class="page-header"><button class="back-button" onclick="goToPage('home-page')">← Back to Hub</button>
+     <h1 class="page-title">Introductions 👋</h1>
+     <p style="color: rgba(255,255,255,0.85); margin-top: 10px;">Tell us about yourself!</p>
+    </div>
+    <div class="page-content">
+     <div class="form-container">
+      <form onsubmit="handleIntroductionSubmit(event)">
+       <div class="success-message" id="introSuccess">
+        ✓ Thanks for sharing!
+       </div>
+       <div class="form-group"><label class="form-label" for="introName">Your Name</label> <input type="text" id="introName" class="form-input" placeholder="John Doe" required>
+       </div>
+       <div class="form-group"><label class="form-label" for="introTeam">Team</label> <input type="text" id="introTeam" class="form-input" placeholder="Operations">
+       </div>
+       <div class="form-group"><label class="form-label" for="introKnown">I'm Known For</label> <input type="text" id="introKnown" class="form-input" placeholder="e.g., great coffee, problem-solving">
+       </div>
+       <div class="form-group"><label class="form-label" for="introPassion">I Could Talk Forever About...</label> <input type="text" id="introPassion" class="form-input" placeholder="e.g., hiking, true crime podcasts">
+       </div>
+       <div class="form-group"><label class="form-label" for="introJoy">My Current Small Joy Is...</label> <input type="text" id="introJoy" class="form-input" placeholder="e.g., morning coffee, my cat">
+       </div>
+       <div class="form-group"><label class="form-label">My DISC Profile Is...</label>
+        <div class="radio-group">
+         <div class="radio-option"><input type="radio" id="disc1" name="disc_profile" value="Driver"> <label for="disc1">🎯 Driver</label>
+         </div>
+         <div class="radio-option"><input type="radio" id="disc2" name="disc_profile" value="Influencer"> <label for="disc2">⭐ Influencer</label>
+         </div>
+         <div class="radio-option"><input type="radio" id="disc3" name="disc_profile" value="Supporter"> <label for="disc3">🤝 Supporter</label>
+         </div>
+         <div class="radio-option"><input type="radio" id="disc4" name="disc_profile" value="Calculator"> <label for="disc4">📊 Calculator</label>
+         </div>
+        </div>
+       </div>
+       <div class="form-group"><label class="form-label" for="introAppreciation">I Feel Appreciated Most When...</label> <input type="text" id="introAppreciation" class="form-input" placeholder="e.g., someone listens, my work is recognized">
+       </div>
+       <div class="form-group"><label class="form-label" for="introPhoto">Share a Photo (Optional)</label> <input type="file" id="introPhoto" class="form-input" accept="image/*">
+        <p style="color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 8px;">📸 Share a photo of yourself or anything you'd like!</p>
+       </div>
+       <div class="form-buttons"><button type="button" class="btn btn-secondary" onclick="goToPage('home-page')">Cancel</button> <button type="submit" class="btn btn-primary">Submit Introduction</button>
+       </div>
+      </form>
+     </div>
+    </div>
+    <div id="introductions-results"></div>
+   </div>
+  </div><!-- RECOGNITION PAGE -->
+  <div id="recognition-page" class="page">
+   <div class="page-header"><button class="back-button" onclick="goToPage('home-page')">← Back to Hub</button>
+    <h1 class="page-title">Recognition Wall ⭐</h1>
+    <p style="color: rgba(255,255,255,0.85); margin-top: 10px;">Give kudos and celebrate!</p>
+   </div>
+   <div class="page-content" style="padding: 0 20px 40px;">
+    <div class="bulletin-board-container">
+     <div class="bulletin-left" id="recognition-results"></div>
+     <div class="bulletin-right">
+      <div class="form-container">
+       <form onsubmit="handleRecognitionSubmit(event)">
+        <div class="success-message" id="recognitionSuccess">
+         ✓ Kudos sent!
+        </div>
+        <div class="form-group"><label class="form-label" for="kudosFrom">Your Name</label> <input type="text" id="kudosFrom" class="form-input" placeholder="Your name" required>
+        </div>
+        <div class="form-group"><label class="form-label" for="kudosTo">Kudos To</label> <input type="text" id="kudosTo" class="form-input" placeholder="Teammate's name" required>
+        </div>
+        <div class="form-group"><label class="form-label" for="kudosText">What's Awesome About Them?</label> <textarea id="kudosText" class="form-textarea" placeholder="Tell them what makes them great!" required></textarea>
+        </div>
+        <div class="form-buttons"><button type="button" class="btn btn-secondary" onclick="goToPage('home-page')">Cancel</button> <button type="submit" class="btn btn-primary">Send Kudos</button>
+        </div>
+       </form>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div><!-- SHOW & TELL PAGE -->
+  <div id="showtell-page" class="page">
+   <div class="page-header"><button class="back-button" onclick="goToPage('home-page')">← Back to Hub</button>
+    <h1 class="page-title">Show &amp; Tell 🎨</h1>
+    <p style="color: rgba(255,255,255,0.85); margin-top: 10px;">Share something interesting!</p>
+   </div>
+   <div class="page-content">
+    <div class="form-container">
+     <form onsubmit="handleShowTellSubmit(event)">
+      <div class="success-message" id="showTellSuccess">
+       ✓ Thanks for sharing!
+      </div>
+      <div class="form-group"><label class="form-label" for="showTellName">Your Name</label> <input type="text" id="showTellName" class="form-input" placeholder="Your name" required>
+      </div>
+      <div class="form-group"><label class="form-label" for="showTellItem">What Are You Sharing?</label> <input type="text" id="showTellItem" class="form-input" placeholder="e.g., My vegetable garden" required>
+      </div>
+      <div class="form-group"><label class="form-label" for="showTellStory">Tell Us Your Story</label> <textarea id="showTellStory" class="form-textarea" placeholder="Why is this special to you?" required></textarea>
+      </div>
+      <div class="form-buttons"><button type="button" class="btn btn-secondary" onclick="goToPage('home-page')">Cancel</button> <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+     </form>
+    </div>
+    <div id="showtell-results"></div>
+   </div>
+  </div><!-- QUIZ PAGE -->
+  <div id="quiz-page" class="page">
+   <div class="page-header"><button class="back-button" onclick="goToPage('home-page')">← Back to Hub</button>
+    <h1 class="page-title">Getting to Know You 🧩</h1>
+    <p style="color: rgba(255,255,255,0.85); margin-top: 10px;">Take a fun personality quiz!</p>
+   </div>
+   <div class="page-content">
+    <div class="form-container">
+     <form onsubmit="handleQuizSubmit(event)">
+      <div class="success-message" id="quizSuccess">
+       ✓ Quiz submitted!
+      </div>
+      <div class="form-group"><label class="form-label" for="quizName">Your Name</label> <input type="text" id="quizName" class="form-input" placeholder="Your name" required>
+      </div>
+      <div class="form-group"><label class="form-label">Morning person or night owl?</label>
+       <div class="radio-group">
+        <div class="radio-option"><input type="radio" id="q1a" name="question1" value="Morning bird" required> <label for="q1a">🌅 Morning person</label>
+        </div>
+        <div class="radio-option"><input type="radio" id="q1b" name="question1" value="Night owl"> <label for="q1b">🦉 Night owl</label>
+        </div>
+       </div>
+      </div>
+      <div class="form-group"><label class="form-label">Favorite way to relax?</label>
+       <div class="radio-group">
+        <div class="radio-option"><input type="radio" id="q2a" name="question2" value="Outdoor adventure" required> <label for="q2a">🏔️ Outdoor adventure</label>
+        </div>
+        <div class="radio-option"><input type="radio" id="q2b" name="question2" value="Cozy at home"> <label for="q2b">🏠 Cozy at home</label>
+        </div>
+       </div>
+      </div>
+      <div class="form-group"><label class="form-label">Coffee or tea?</label>
+       <div class="radio-group">
+        <div class="radio-option"><input type="radio" id="q3a" name="question3" value="Coffee" required> <label for="q3a">☕ Coffee</label>
+        </div>
+        <div class="radio-option"><input type="radio" id="q3b" name="question3" value="Tea"> <label for="q3b">🫖 Tea</label>
+        </div>
+        <div class="radio-option"><input type="radio" id="q3c" name="question3" value="Neither"> <label for="q3c">💧 Neither</label>
+        </div>
+       </div>
+      </div>
+      <div class="form-buttons"><button type="button" class="btn btn-secondary" onclick="goToPage('home-page')">Cancel</button> <button type="submit" class="btn btn-primary">Submit Quiz</button>
+      </div>
+     </form>
+    </div>
+    <div id="quiz-results"></div>
+   </div>
+  </div><!-- PLAYLIST PAGE -->
+  <div id="playlist-page" class="page">
+   <div class="page-header"><button class="back-button" onclick="goToPage('home-page')">← Back to Hub</button>
+    <h1 class="page-title">Shared Playlist 🎵</h1>
+    <p style="color: rgba(255,255,255,0.85); margin-top: 10px;">Add your favorite song!</p>
+   </div>
+   <div class="page-content">
+    <div class="form-container">
+     <form onsubmit="handlePlaylistSubmit(event)">
+      <div class="success-message" id="playlistSuccess">
+       ✓ Song added!
+      </div>
+      <div class="form-group"><label class="form-label" for="playlistName">Your Name</label> <input type="text" id="playlistName" class="form-input" placeholder="Your name" required>
+      </div>
+      <div class="form-group"><label class="form-label" for="mondayPlaylist">Monday - Hype Me Up! 🚀</label> <input type="text" id="mondayPlaylist" class="form-input" placeholder="Artist - Song Title" required>
+      </div>
+      <div class="form-group"><label class="form-label" for="wednesdayPlaylist">Wednesday - Over the Hump! 📈</label> <input type="text" id="wednesdayPlaylist" class="form-input" placeholder="Artist - Song Title" required>
+      </div>
+      <div class="form-group"><label class="form-label" for="fridayPlaylist">Friday - Boogie Into the Weekend! 🎉</label> <input type="text" id="fridayPlaylist" class="form-input" placeholder="Artist - Song Title" required>
+      </div>
+      <div class="form-buttons"><button type="button" class="btn btn-secondary" onclick="goToPage('home-page')">Cancel</button> <button type="submit" class="btn btn-primary">Add Song</button>
+      </div>
+     </form>
+    </div>
+    <div id="playlist-results"></div>
+   </div>
+  </div><!-- BINGO PAGE -->
+  <div id="bingo-page" class="page">
+   <div class="page-header"><button class="back-button" onclick="goToPage('home-page')">← Back to Hub</button>
+    <h1 class="page-title">Skillset Bingo 🎯</h1>
+    <p style="color: rgba(255,255,255,0.85); margin-top: 10px;">Mark the skills that match YOU!</p>
+   </div>
+   <div class="page-content">
+    <div class="form-container" style="max-width: 500px;">
+     <div class="form-group"><label class="form-label">Pick Your Avatar</label>
+      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px;">
+       <button type="button" class="emoji-picker-btn" data-emoji="😊" onclick="selectBingoEmoji('😊', event)">😊</button> <button type="button" class="emoji-picker-btn" data-emoji="🎉" onclick="selectBingoEmoji('🎉', event)">🎉</button> <button type="button" class="emoji-picker-btn" data-emoji="🚀" onclick="selectBingoEmoji('🚀', event)">🚀</button> <button type="button" class="emoji-picker-btn" data-emoji="⭐" onclick="selectBingoEmoji('⭐', event)">⭐</button> <button type="button" class="emoji-picker-btn" data-emoji="🔥" onclick="selectBingoEmoji('🔥', event)">🔥</button> <button type="button" class="emoji-picker-btn" data-emoji="💡" onclick="selectBingoEmoji('💡', event)">💡</button> <button type="button" class="emoji-picker-btn" data-emoji="🎯" onclick="selectBingoEmoji('🎯', event)">🎯</button> <button type="button" class="emoji-picker-btn" data-emoji="🌟" onclick="selectBingoEmoji('🌟', event)">🌟</button> <button type="button" class="emoji-picker-btn" data-emoji="💪" onclick="selectBingoEmoji('💪', event)">💪</button> <button type="button" class="emoji-picker-btn" data-emoji="🧠" onclick="selectBingoEmoji('🧠', event)">🧠</button> <button type="button" class="emoji-picker-btn" data-emoji="🎨" onclick="selectBingoEmoji('🎨', event)">🎨</button> <button type="button" class="emoji-picker-btn" data-emoji="🌈" onclick="selectBingoEmoji('🌈', event)">🌈</button>
+      </div><input type="hidden" id="bingoSelectedEmoji" required>
+     </div>
+     <div class="form-group"><label class="form-label" for="bingoName">Your Name</label> <input type="text" id="bingoName" class="form-input" placeholder="Your name" required>
+     </div>
+    </div>
+    <div style="margin: 40px 0;">
+     <div id="bingo-card" class="bingo-card"></div>
+     <div style="text-align: center; margin-top: 30px;">
+      <button type="button" class="btn btn-primary" onclick="submitBingo()">Submit My Skills</button> <button type="button" class="btn btn-secondary" onclick="goToPage('home-page')" style="margin-left: 10px;">Cancel</button>
+     </div>
+     <div class="success-message" id="bingoSuccess">
+      ✓ Skills marked!
+     </div>
+    </div>
+    <div id="bingo-results" style="margin-top: 40px;"></div>
+   </div>
+  </div><!-- TYPING RACE PAGE -->
+  <div id="typing-page" class="page">
+   <div class="page-header"><button class="back-button" onclick="goToPage('home-page')">← Back to Hub</button>
+    <h1 class="page-title">Typing Race 🏎️</h1>
+    <p style="color: rgba(255,255,255,0.85); margin-top: 10px;">Challenge your typing speed!</p>
+   </div>
+   <div class="page-content">
+    <div class="typing-race-container">
+     <div style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 30px; max-width: 600px; margin: 0 auto 30px; text-align: center;">
+      <p style="color: rgba(255,255,255,0.9); margin: 0 0 15px 0; font-size: 16px;">Ready to test your typing speed?</p><a href="https://www.typing.com/student/typing-test/1-min" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display: inline-block; margin-bottom: 15px; text-decoration: none;">Take the 1-Minute Typing Test</a>
+      <p style="color: rgba(255,255,255,0.7); font-size: 14px; margin: 0;">After you complete the test, enter your highest WPM below to join the race! 🏁</p>
+     </div>
+     <div class="race-track">
+      <div class="race-lanes" id="race-lanes"></div>
+     </div>
+     <div class="typing-input-container">
+      <form onsubmit="handleTypingSubmit(event)">
+       <div class="success-message" id="typingSuccess">
+        ✓ Speed recorded!
+       </div>
+       <div class="form-group"><label class="form-label" for="typingName">Your Name</label> <input type="text" id="typingName" class="form-input" placeholder="Your name" required>
+       </div>
+       <div class="form-group"><label class="form-label" for="typingWpm">Your Highest WPM</label> <input type="number" id="typingWpm" class="form-input" placeholder="Enter your WPM" min="0" required>
+       </div>
+       <div class="form-buttons"><button type="button" class="btn btn-secondary" onclick="goToPage('home-page')">Cancel</button> <button type="submit" class="btn btn-primary">Submit Speed</button>
+       </div>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+    // --- Google Sheets-backed "dataSdk" via Google Apps Script Web App ---
+    // 1) Create a Google Sheet (e.g., "Employee Appreciation Week Responses")
+    // 2) Create an Apps Script Web App (code provided in the instructions)
+    // 3) Paste your deployed Web App URL below:
+    const APPS_SCRIPT_WEBAPP_URL = "PASTE_YOUR_WEB_APP_URL_HERE";
+
+    async function gsFetch(path, options = {}) {
+      if (!APPS_SCRIPT_WEBAPP_URL || APPS_SCRIPT_WEBAPP_URL.includes("PASTE_YOUR_WEB_APP_URL_HERE")) {
+        throw new Error("Missing APPS_SCRIPT_WEBAPP_URL. Paste your Apps Script Web App URL into APPS_SCRIPT_WEBAPP_URL.");
+      }
+      const url = APPS_SCRIPT_WEBAPP_URL + path;
+      const res = await fetch(url, {
+        // Avoid CORS preflight by using text/plain (Apps Script reads e.postData.contents)
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        ...options
+      });
+      const text = await res.text();
+      let data;
+      try { data = JSON.parse(text); } catch { data = { raw: text }; }
+      if (!res.ok || data?.ok === false) {
+        throw new Error(data?.error || `Request failed (${res.status})`);
+      }
+      return data;
+    }
+
+    window.dataSdk = {
+      _handler: null,
+      async init(handler) {
+        this._handler = handler || null;
+        const data = await gsFetch("?action=list");
+        if (this._handler && typeof this._handler.onDataChanged === "function") {
+          this._handler.onDataChanged(data.records || []);
+        }
+        return { isOk: true };
+      },
+      async create(record) {
+        const payload = JSON.stringify(record);
+        await gsFetch("?action=create", { method: "POST", body: payload });
+        const data = await gsFetch("?action=list");
+        if (this._handler && typeof this._handler.onDataChanged === "function") {
+          this._handler.onDataChanged(data.records || []);
+        }
+        return { isOk: true };
+      },
+      // Optional: clearing shared team data is risky. Disabled by default.
+      async clearAll() {
+        alert("Clear All is disabled for the shared team version. If you need it, we can add an admin key.");
+        return { isOk: false };
+      }
+    };
+  </script>
+
+<script>
+    let currentData = [];
+
+    // Initialize Data SDK
+    const dataHandler = {
+      onDataChanged(data) {
+        currentData = data;
+        renderAllResults();
+      }
+    };
+
+    async function initDataSdk() {
+      const result = await window.dataSdk.init(dataHandler);
+      if (!result.isOk) {
+        console.error('Failed to initialize data SDK');
+      }
+    }
+
+    initDataSdk();
+
+    function goToPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function renderAllResults() {
+      renderIntroductions();
+      renderRecognition();
+      renderShowTell();
+      renderQuiz();
+      renderPlaylist();
+      renderBingo();
+      renderRaceTrack();
+    }
+
+    function renderIntroductions() {
+      const intros = currentData.filter(d => d.activity_type === 'introduction');
+      const container = document.getElementById('introductions-results');
+      
+      if (intros.length === 0) {
+        container.innerHTML = '<div class="no-results"><div class="no-results-icon">👥</div><p>No introductions yet. Be the first to share!</p></div>';
+        return;
+      }
+
+      container.innerHTML = '<h2 style="color: white; margin: 40px 0 20px; font-size: 28px;">Team Introductions</h2><div class="results-grid">' + 
+        intros.map(intro => `
+          <div class="result-card">
+            ${intro.photo_data && intro.photo_data !== 'none' ? `<img src="${intro.photo_data}" alt="${intro.name}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">` : '<div style="width: 100%; height: 200px; background: linear-gradient(135deg, rgba(212,175,55,0.2), rgba(212,175,55,0.1)); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; font-size: 64px;">📸</div>'}
+            <h3 style="color: #d4af37; margin: 0 0 5px 0; text-align: center;">${intro.name}</h3>
+            <p style="color: rgba(255,255,255,0.7); font-size: 14px; margin: 5px 0; text-align: center;">Team: ${intro.team}</p>
+            <div style="border-top: 1px solid rgba(212,175,55,0.2); padding-top: 15px; margin-top: 15px;">
+              <p style="margin: 8px 0;"><strong style="color: #d4af37;">Known for:</strong> ${intro.known_for}</p>
+              <p style="margin: 8px 0;"><strong style="color: #d4af37;">Could talk forever about:</strong> ${intro.passion || 'N/A'}</p>
+              <p style="margin: 8px 0;"><strong style="color: #d4af37;">Current small joy:</strong> ${intro.joy || 'N/A'}</p>
+              <p style="margin: 8px 0;"><strong style="color: #d4af37;">DISC Profile:</strong> ${intro.disc_profile || 'N/A'}</p>
+              <p style="margin: 8px 0;"><strong style="color: #d4af37;">Feels appreciated when:</strong> ${intro.appreciation || 'N/A'}</p>
+            </div>
+          </div>
+        `).join('') + '</div>';
+    }
+
+    function renderRecognition() {
+      const kudos = currentData.filter(d => d.activity_type === 'recognition');
+      const container = document.getElementById('recognition-results');
+      
+      if (kudos.length === 0) {
+        container.innerHTML = '<div style="text-align: center; padding: 80px 20px; color: rgba(0,0,0,0.3);"><div class="no-results-icon" style="font-size: 48px; color: rgba(0,0,0,0.2);">⭐</div><p style="color: rgba(0,0,0,0.3);">No kudos yet. Start the appreciation!</p></div>';
+        return;
+      }
+
+      container.innerHTML = '<div class="postit-notes">' + kudos.map(k => `
+        <div class="postit-note">
+          <div class="postit-name">For: ${k.kudos_to}</div>
+          <div class="postit-text">${k.kudos_text}</div>
+          <div style="font-size: 11px; color: #666; margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd;">From: ${k.kudos_from || 'Anonymous'}</div>
+        </div>
+      `).join('') + '</div>';
+    }
+
+    function renderShowTell() {
+      const shows = currentData.filter(d => d.activity_type === 'show_tell');
+      const container = document.getElementById('showtell-results');
+      
+      if (shows.length === 0) {
+        container.innerHTML = '<div class="no-results"><div class="no-results-icon">🎨</div><p>No show & tells yet. Be the first to share!</p></div>';
+        return;
+      }
+
+      container.innerHTML = '<h2 style="color: white; margin: 40px 0 20px; font-size: 28px;">Show &amp; Tell</h2><div class="results-grid">' + 
+        shows.map(show => `
+          <div class="result-card">
+            <h3 style="color: #d4af37; margin-top: 0;">${show.name}</h3>
+            <p style="color: #d4af37; font-weight: 600;">📍 ${show.item}</p>
+            <p style="color: rgba(255,255,255,0.9); line-height: 1.6;">${show.story}</p>
+          </div>
+        `).join('') + '</div>';
+    }
+
+    function renderQuiz() {
+      const quizzes = currentData.filter(d => d.activity_type === 'quiz');
+      const container = document.getElementById('quiz-results');
+      
+      if (quizzes.length === 0) {
+        container.innerHTML = '<div class="no-results"><div class="no-results-icon">🧩</div><p>No quiz responses yet. Be the first to answer!</p></div>';
+        return;
+      }
+
+      container.innerHTML = '<h2 style="color: white; margin: 40px 0 20px; font-size: 28px;">Quiz Results</h2><div class="results-grid">' + 
+        quizzes.map(quiz => `
+          <div class="result-card">
+            <h3 style="color: #d4af37; margin-top: 0;">${quiz.name}</h3>
+            <p style="color: rgba(255,255,255,0.8); font-size: 14px;">🌅 ${quiz.question_1}</p>
+            <p style="color: rgba(255,255,255,0.8); font-size: 14px;">😴 ${quiz.question_2}</p>
+            <p style="color: rgba(255,255,255,0.8); font-size: 14px;">☕ ${quiz.question_3}</p>
+          </div>
+        `).join('') + '</div>';
+    }
+
+    function renderPlaylist() {
+      const songs = currentData.filter(d => d.activity_type === 'playlist');
+      const container = document.getElementById('playlist-results');
+      
+      if (songs.length === 0) {
+        container.innerHTML = '<div class="no-results"><div class="no-results-icon">🎵</div><p>No songs added yet. Be the first to add one!</p></div>';
+        return;
+      }
+
+      let html = '';
+      
+      html += '<h2 style="color: white; margin: 40px 0 20px; font-size: 24px;">🚀 Monday - Hype Me Up!</h2><div class="results-grid">' + 
+        songs.map(song => `
+          <div class="result-card">
+            <p style="color: rgba(255,255,255,0.7); font-size: 13px;">Added by ${song.name}</p>
+            <h3 style="color: #d4af37; margin: 8px 0;">${song.monday_full}</h3>
+          </div>
+        `).join('') + '</div>';
+
+      html += '<h2 style="color: white; margin: 40px 0 20px; font-size: 24px;">📈 Wednesday - Over the Hump!</h2><div class="results-grid">' + 
+        songs.map(song => `
+          <div class="result-card">
+            <p style="color: rgba(255,255,255,0.7); font-size: 13px;">Added by ${song.name}</p>
+            <h3 style="color: #d4af37; margin: 8px 0;">${song.wednesday_full}</h3>
+          </div>
+        `).join('') + '</div>';
+
+      html += '<h2 style="color: white; margin: 40px 0 20px; font-size: 24px;">🎉 Friday - Boogie Into the Weekend!</h2><div class="results-grid">' + 
+        songs.map(song => `
+          <div class="result-card">
+            <p style="color: rgba(255,255,255,0.7); font-size: 13px;">Added by ${song.name}</p>
+            <h3 style="color: #d4af37; margin: 8px 0;">${song.friday_full}</h3>
+          </div>
+        `).join('') + '</div>';
+
+      container.innerHTML = html;
+    }
+
+    async function handleIntroductionSubmit(event) {
+      event.preventDefault();
+      const submitButton = event.target.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+
+      let photoUrl = null;
+      const photoFile = document.getElementById('introPhoto').files[0];
+      
+      if (photoFile) {
+        const reader = new FileReader();
+        photoUrl = await new Promise((resolve) => {
+          reader.onload = () => resolve(reader.result);
+          reader.readAsDataURL(photoFile);
+        });
+      }
+
+      const introData = {
+        activity_type: 'introduction',
+        name: document.getElementById('introName').value,
+        team: document.getElementById('introTeam').value,
+        known_for: document.getElementById('introKnown').value,
+        passion: document.getElementById('introPassion').value,
+        joy: document.getElementById('introJoy').value,
+        disc_profile: document.querySelector('input[name="disc_profile"]:checked').value,
+        appreciation: document.getElementById('introAppreciation').value,
+        photo_data: photoUrl || 'none',
+        created_at: new Date().toISOString()
+      };
+
+      const result = await window.dataSdk.create(introData);
+      if (result.isOk) {
+        showSuccessMessage('introSuccess');
+        event.target.reset();
+        setTimeout(() => {
+          goToPage('introductions-page');
+        }, 1500);
+      } else {
+        alert('Error saving introduction');
+      }
+      submitButton.disabled = false;
+    }
+
+    async function handleRecognitionSubmit(event) {
+      event.preventDefault();
+      const submitButton = event.target.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+
+      const kudosData = {
+        activity_type: 'recognition',
+        kudos_from: document.getElementById('kudosFrom').value,
+        kudos_to: document.getElementById('kudosTo').value,
+        kudos_text: document.getElementById('kudosText').value,
+        created_at: new Date().toISOString()
+      };
+
+      const result = await window.dataSdk.create(kudosData);
+      if (result.isOk) {
+        showSuccessMessage('recognitionSuccess');
+        event.target.reset();
+        setTimeout(() => {
+          goToPage('recognition-page');
+        }, 1500);
+      } else {
+        alert('Error saving kudos');
+      }
+      submitButton.disabled = false;
+    }
+
+    async function handleShowTellSubmit(event) {
+      event.preventDefault();
+      const submitButton = event.target.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+
+      const showTellData = {
+        activity_type: 'show_tell',
+        name: document.getElementById('showTellName').value,
+        item: document.getElementById('showTellItem').value,
+        story: document.getElementById('showTellStory').value,
+        created_at: new Date().toISOString()
+      };
+
+      const result = await window.dataSdk.create(showTellData);
+      if (result.isOk) {
+        showSuccessMessage('showTellSuccess');
+        event.target.reset();
+        setTimeout(() => {
+          goToPage('showtell-page');
+        }, 1500);
+      } else {
+        alert('Error saving show & tell');
+      }
+      submitButton.disabled = false;
+    }
+
+    async function handleQuizSubmit(event) {
+      event.preventDefault();
+      const submitButton = event.target.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+
+      const quizData = {
+        activity_type: 'quiz',
+        name: document.getElementById('quizName').value,
+        question_1: document.querySelector('input[name="question1"]:checked').value,
+        question_2: document.querySelector('input[name="question2"]:checked').value,
+        question_3: document.querySelector('input[name="question3"]:checked').value,
+        created_at: new Date().toISOString()
+      };
+
+      const result = await window.dataSdk.create(quizData);
+      if (result.isOk) {
+        showSuccessMessage('quizSuccess');
+        event.target.reset();
+        setTimeout(() => {
+          goToPage('quiz-page');
+        }, 1500);
+      } else {
+        alert('Error saving quiz');
+      }
+      submitButton.disabled = false;
+    }
+
+    async function handlePlaylistSubmit(event) {
+      event.preventDefault();
+      const submitButton = event.target.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+
+      const playlistData = {
+        activity_type: 'playlist',
+        name: document.getElementById('playlistName').value,
+        monday_full: document.getElementById('mondayPlaylist').value,
+        wednesday_full: document.getElementById('wednesdayPlaylist').value,
+        friday_full: document.getElementById('fridayPlaylist').value,
+        created_at: new Date().toISOString()
+      };
+
+      const result = await window.dataSdk.create(playlistData);
+      if (result.isOk) {
+        showSuccessMessage('playlistSuccess');
+        event.target.reset();
+        setTimeout(() => {
+          goToPage('playlist-page');
+        }, 1500);
+      } else {
+        alert('Error saving songs');
+      }
+      submitButton.disabled = false;
+    }
+
+    async function handleBingoSubmit(event) {
+      event.preventDefault();
+      const submitButton = event.target.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+
+      const bingoData = {
+        activity_type: 'bingo',
+        name: document.getElementById('bingoName').value,
+        skill_1: document.getElementById('skill1').value,
+        skill_2: document.getElementById('skill2').value,
+        skill_3: document.getElementById('skill3').value,
+        created_at: new Date().toISOString()
+      };
+
+      const result = await window.dataSdk.create(bingoData);
+      if (result.isOk) {
+        showSuccessMessage('bingoSuccess');
+        event.target.reset();
+        setTimeout(() => {
+          goToPage('bingo-page');
+        }, 1500);
+      } else {
+        alert('Error saving bingo');
+      }
+      submitButton.disabled = false;
+    }
+
+    function showSuccessMessage(elementId) {
+      const element = document.getElementById(elementId);
+      element.classList.add('show');
+      setTimeout(() => element.classList.remove('show'), 2000);
+    }
+
+    function selectBingoEmoji(emoji, event) {
+      event.preventDefault();
+      document.querySelectorAll('#bingo-page .emoji-picker-btn').forEach(btn => btn.classList.remove('selected'));
+      event.target.classList.add('selected');
+      document.getElementById('bingoSelectedEmoji').value = emoji;
+    }
+
+    const BINGO_SKILLS = [
+      'PowerPoint\nPresentations',
+      'Canva\nDesign',
+      'Excel\nSpreadsheets',
+      'SmartSheet',
+      'Public\nSpeaking',
+      'Coaching\nMentoring',
+      'Data\nAnalysis',
+      'Project\nManagement',
+      'Creative\nWriting',
+      'Graphic\nDesign',
+      'Social Media',
+      'Video\nEditing',
+      'Presentation\nSkills',
+      'Customer\nService',
+      'Leadership',
+      'Team\nBuilding',
+      'Problem\nSolving',
+      'Time\nManagement',
+      'Communication',
+      'Adaptability',
+      'Collaboration',
+      'Organization',
+      'Attention to\nDetail',
+      'Critical\nThinking',
+      'Initiative'
+    ];
+
+    let selectedBingoSkills = new Set();
+
+    function initBingoCard() {
+      const card = document.getElementById('bingo-card');
+      card.innerHTML = '<div class="bingo-card">' + 
+        BINGO_SKILLS.map((skill, idx) => `
+          <div class="bingo-cell" data-skill="${idx}" onclick="toggleBingoSkill(${idx})">
+            <div class="bingo-cell-skill">${skill}</div>
+            <div class="bingo-cell-avatar">👤</div>
+          </div>
+        `).join('') + '</div>';
+      updateBingoCard();
+    }
+
+    function toggleBingoSkill(idx) {
+      if (selectedBingoSkills.has(idx)) {
+        selectedBingoSkills.delete(idx);
+      } else {
+        selectedBingoSkills.add(idx);
+      }
+      updateBingoCard();
+    }
+
+    function updateBingoCard() {
+      const emoji = document.getElementById('bingoSelectedEmoji').value || '👤';
+      document.querySelectorAll('.bingo-cell').forEach((cell, idx) => {
+        if (selectedBingoSkills.has(idx)) {
+          cell.classList.add('selected');
+          cell.querySelector('.bingo-cell-avatar').textContent = emoji;
+        } else {
+          cell.classList.remove('selected');
+        }
+      });
+    }
+
+    async function submitBingo() {
+      const name = document.getElementById('bingoName').value;
+      if (!name) {
+        alert('Please enter your name');
+        return;
+      }
+      if (selectedBingoSkills.size === 0) {
+        alert('Please select at least one skill');
+        return;
+      }
+
+      const selectedSkills = Array.from(selectedBingoSkills).map(idx => BINGO_SKILLS[idx]).join(', ');
+      
+      const bingoData = {
+        activity_type: 'bingo',
+        name: name,
+        bingo_selections: selectedSkills,
+        picture_emoji: document.getElementById('bingoSelectedEmoji').value || '👤',
+        created_at: new Date().toISOString()
+      };
+
+      const result = await window.dataSdk.create(bingoData);
+      if (result.isOk) {
+        showSuccessMessage('bingoSuccess');
+        selectedBingoSkills.clear();
+        document.getElementById('bingoName').value = '';
+        document.getElementById('bingoSelectedEmoji').value = '';
+        document.querySelectorAll('#bingo-page .emoji-picker-btn').forEach(btn => btn.classList.remove('selected'));
+        initBingoCard();
+      } else {
+        alert('Error saving bingo');
+      }
+    }
+
+    function renderBingo() {
+      const bingo = currentData.filter(d => d.activity_type === 'bingo');
+      const container = document.getElementById('bingo-results');
+      
+      if (bingo.length === 0) {
+        container.innerHTML = '<div class="no-results"><div class="no-results-icon">🎯</div><p>No skills marked yet. Be the first to share!</p></div>';
+        return;
+      }
+
+      container.innerHTML = '<h2 style="color: white; margin: 40px 0 20px; font-size: 28px;">Team Skills</h2><div class="results-grid">' + 
+        bingo.map(b => `
+          <div class="result-card">
+            <div style="text-align: center; margin-bottom: 15px;">
+              <div style="font-size: 48px; margin-bottom: 10px;">${b.picture_emoji || '👤'}</div>
+              <h3 style="color: #d4af37; margin: 0;">${b.name}</h3>
+            </div>
+            <p style="color: rgba(255,255,255,0.9); font-size: 13px; line-height: 1.6;">${b.bingo_selections}</p>
+          </div>
+        `).join('') + '</div>';
+    }
+
+    async function handleTypingSubmit(event) {
+      event.preventDefault();
+      const submitButton = event.target.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+
+      const name = document.getElementById('typingName').value;
+      const wpm = parseInt(document.getElementById('typingWpm').value);
+
+      const typingData = {
+        activity_type: 'typing',
+        name: name,
+        wpm: wpm,
+        created_at: new Date().toISOString()
+      };
+
+      const result = await window.dataSdk.create(typingData);
+      if (result.isOk) {
+        showSuccessMessage('typingSuccess');
+        event.target.reset();
+        renderRaceTrack();
+        setTimeout(() => {
+          document.getElementById('typingWpm').focus();
+        }, 500);
+      } else {
+        alert('Error saving typing speed');
+      }
+      submitButton.disabled = false;
+    }
+
+    function renderRaceTrack() {
+      const typingEntries = currentData.filter(d => d.activity_type === 'typing');
+      const raceLanesContainer = document.getElementById('race-lanes');
+
+      if (typingEntries.length === 0) {
+        raceLanesContainer.innerHTML = '<div style="text-align: center; padding: 100px 20px; color: rgba(0,0,0,0.3);"><p>No racers yet! Submit your typing speed to join the race.</p></div>';
+        return;
+      }
+
+      const maxWpm = Math.max(...typingEntries.map(e => e.wpm || 0));
+      const sortedEntries = [...typingEntries].sort((a, b) => (b.wpm || 0) - (a.wpm || 0));
+
+      raceLanesContainer.innerHTML = sortedEntries.map(entry => {
+        const progress = maxWpm > 0 ? (entry.wpm / maxWpm) * 100 : 0;
+        return `
+          <div class="lane">
+            <div class="racer-name">${entry.name}</div>
+            <div class="race-progress">
+              <div class="race-car" style="left: ${progress}%;">🏎️</div>
+            </div>
+            <div class="wpm">${entry.wpm} wpm</div>
+          </div>
+        `;
+      }).join('');
+    }
+    // Initialize the bingo grid on first load
+    document.addEventListener('DOMContentLoaded', () => {
+      try { initBingoCard(); } catch (e) { console.warn("Bingo init failed", e); }
+    });
+
+  </script>
+</body>
+</html>
